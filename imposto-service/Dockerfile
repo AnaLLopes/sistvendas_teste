@@ -1,26 +1,33 @@
-#imagem para o processo de build
+# imagem para o processo de build
 FROM eclipse-temurin:21-jdk-alpine AS build
-#diretório de trabalho
+
 WORKDIR /workspace/app
-#copiar arquivos do maven
-COPY mvnw .
-COPY .mvn .mvn
-#copiar o arquivo com as dependências
-COPY pom.xml .
-#fazer download de todas dependências sem gerar o JAR final
+
+COPY imposto-service/mvnw .
+COPY imposto-service/mvnw.cmd .
+COPY imposto-service/.mvn .mvn
+
+COPY imposto-service/pom.xml .
+
+RUN chmod +x mvnw
 RUN ./mvnw dependency:go-offline
-#copiar os arquivos-fonte
-COPY src src
-#realizar o build da aplicação sem executar os testes
+
+COPY imposto-service/controller controller
+COPY imposto-service/factories factories
+COPY imposto-service/imposto imposto
+COPY imposto-service/model model
+COPY imposto-service/repository repository
+COPY imposto-service/service service
+
 RUN ./mvnw clean install -DskipTests
 
-#imagem para implantação em produção
+# imagem para execução
 FROM eclipse-temurin:21-jre-alpine AS final
-#diretório de trabalho
+
 WORKDIR /workspace/app
-#copiar os arquivos para execução no conteiner
-COPY --from=build /workspace/app/target/*.jar /workspace/app/app.jar
-#expor a porta utilizada na aplicação
-EXPOSE 8000
-#executar o JAR
+
+COPY --from=build /workspace/app/target/*.jar app.jar
+
+EXPOSE 8100
+
 ENTRYPOINT ["java", "-jar", "/workspace/app/app.jar"]
