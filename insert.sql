@@ -1,0 +1,25 @@
+INSERT INTO PRODUTO (ID, PRECO_UNITARIO, DESCRICAO) VALUES
+(1, 25.50, 'Caneta Esferográfica Azul'),
+(2, 10.00, 'Lápis Preto Nº2'),
+(3, 150.00, 'Mochila Escolar'),
+(4, 5.75, 'Borracha Branca');
+
+INSERT INTO ITEM_DE_ESTOQUE (ID, ESTOQUE_MAX, ESTOQUE_MIN, QUANTIDADE, PRODUTO_ID) VALUES
+(1, 500, 50, 200, 1),
+(2, 300, 30, 150, 2),
+(3, 100, 10, 60, 3),
+(4, 400, 40, 180, 4);
+
+INSERT INTO ORCAMENTO (ID, DATA, DESCONTO, EFETIVADO, IMPOSTO_FEDERAL, IMPOSTO_REGIONAL, NOME_CLIENTE, PAIS, REGIAO) VALUES
+(1, '2025-05-10', 5.00, FALSE, 3.50, 1.75, 'Maria Souza', 'Brasil', 'Sudeste'),
+(2, '2025-05-11', 0.00, TRUE, 2.00, 1.00, 'João Silva', 'Brasil', 'Sul');
+
+INSERT INTO PEDIDO (ID, NOME_CLIENTE, PAIS, REGIAO) VALUES
+(1, 'Maria Souza', 'Brasil', 'Sudeste'),
+(2, 'João Silva', 'Brasil', 'Sul');
+
+INSERT INTO ITEM_PEDIDO (ID, QUANTIDADE, ORCAMENTO_ID, PEDIDO_ID, PRODUTO) VALUES
+(1, 10, 1, 1, 1),
+(2, 5, 1, 1, 3),
+(3, 20, 2, 2, 2),
+(4, 15, 2, 2, 4);
