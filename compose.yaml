@@ -1,6 +1,6 @@
 services:
   currency-exchange:
-    build: currency-exchange-service
+    build: imposto-service
     image: exchange
     ports:
       - "8000"
@@ -11,7 +11,7 @@ services:
     environment:
       - eureka.client.serviceUrl.defaultZone=http://naming-server:8761/eureka
   currency-conversion:
-    build: currency-conversion-service
+    build: sistvendas
     image: conversion
     ports:
       - "8100:8100"
