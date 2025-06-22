@@ -40,7 +40,9 @@ services:
     environment:
       - eureka.client.serviceUrl.defaultZone=http://naming-server:8761/eureka
   naming-server:
-    build: naming-server
+    build:
+      context: .
+      dockerfile: naming-server/Dockerfile
     image: nameserver
     ports:
       - "8761:8761"
@@ -57,7 +59,9 @@ services:
     networks:
       - currency-network
   history:
-    build: history-service
+    build:
+      context: .
+      dockerfile: history-service/Dockerfile
     image: history
     ports:
       - "8120:8120"

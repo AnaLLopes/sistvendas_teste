@@ -4,6 +4,7 @@ FROM eclipse-temurin:21-jdk-alpine AS build
 WORKDIR /workspace/app
 #copiar arquivos do maven
 COPY mvnw .
+RUN chmod +x mvnw
 COPY .mvn .mvn
 #copiar o arquivo com as dependências
 COPY pom.xml .

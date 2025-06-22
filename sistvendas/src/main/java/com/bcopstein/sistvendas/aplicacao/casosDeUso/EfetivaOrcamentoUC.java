@@ -3,8 +3,8 @@ package com.bcopstein.sistvendas.aplicacao.casosDeUso;
 import com.bcopstein.sistvendas.aplicacao.dtos.OrcamentoDTO;
 import com.bcopstein.sistvendas.dominio.modelos.OrcamentoModel;
 import com.bcopstein.sistvendas.dominio.servicos.ServicoDeVendas;
-import com.bcopstein.sistvendas.infraestrutura.mensageria.RegistroDeVendaDTO;
-import com.bcopstein.sistvendas.infraestrutura.mensageria.VendaPublisher;
+import com.bcopstein.sistvendas.aplicacao.dtos.RegistroDeVendaDTO;
+import com.bcopstein.sistvendas.infra.VendaPublisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,10 +30,10 @@ public class EfetivaOrcamentoUC {
 
         RegistroDeVendaDTO registro = new RegistroDeVendaDTO(
             LocalDate.now(),
-            orcamento.getTotal(),
-            orcamento.getValorImpostos()
+            orcamento.getCustoConsumidor(),
+            orcamento.getImpostoFederal() + orcamento.getImpostoRegional()
         );
-        vendaPublisher.publicar(registro);
+        vendaPublisher.enviarVenda(registro);
 
         return OrcamentoDTO.fromModel(orcamento);
     }

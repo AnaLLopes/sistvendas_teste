@@ -13,25 +13,27 @@ import com.bcopstein.sistvendas.dominio.modelos.ItemPedidoModel;
 import com.bcopstein.sistvendas.dominio.modelos.OrcamentoModel;
 import com.bcopstein.sistvendas.dominio.modelos.PedidoModel;
 import com.bcopstein.sistvendas.dominio.modelos.ProdutoModel;
+import com.bcopstein.sistvendas.infra.ImpostoServiceClient;
 import com.bcopstein.sistvendas.dominio.servicos.ServicoDeEstoque;
 import com.bcopstein.sistvendas.dominio.servicos.ServicoDeVendas;
+import com.bcopstein.sistvendas.aplicacao.casosDeUso.CalculoDeDescontoUC;
 
 @Component
 public class CriaOrcamentoUC {
     private ServicoDeVendas servicoDeVendas;
     private ServicoDeEstoque servicoDeEstoque;
-    private CalculoDeImpostoUC calculoDeImposto;
+    private ImpostoServiceClient impostoClient;
     private CalculoDeDescontoUC calculoDeDesconto;
 
     @Autowired
     public CriaOrcamentoUC(
             ServicoDeVendas servicoDeVendas,
             ServicoDeEstoque servicoDeEstoque,
-            CalculoDeImpostoUC calculoDeImposto,
+            ImpostoServiceClient impostoClient,
             CalculoDeDescontoUC calculoDeDesconto) {
         this.servicoDeVendas = servicoDeVendas;
         this.servicoDeEstoque = servicoDeEstoque;
-        this.calculoDeImposto = calculoDeImposto;
+        this.impostoClient = impostoClient;
         this.calculoDeDesconto = calculoDeDesconto;
     }
 
@@ -46,8 +48,8 @@ public class CriaOrcamentoUC {
         PedidoModel pedido = new PedidoModel(0, itens, pedidoDTO.getPais(), pedidoDTO.getRegiao(),
                 pedidoDTO.getNomeCliente());
 
-        var impostoFederal = calculoDeImposto.calculaImpostoFederal(pedido);
-        var impostoRegional = calculoDeImposto.calculaImpostoRegional(pedido);
+        var impostoFederal = impostoClient.calculaImpostoFederal(pedido);
+        var impostoRegional = impostoClient.calculaImpostoRegional(pedido);
         var desconto = calculoDeDesconto.calculaDesconto(pedido);
 
         OrcamentoModel orcamento = new OrcamentoModel(0, itens, impostoFederal, impostoRegional, desconto,
