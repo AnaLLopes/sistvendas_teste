@@ -34,18 +34,18 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Create and save products
-        Produto produto1 = new Produto(1L, "Caneta Esferográfica Azul", 25.50);
-        Produto produto2 = new Produto(2L, "Lápis Preto Nº3", 10.00);
-        Produto produto3 = new Produto(3L, "Mochila Escolar", 150.00);
-        Produto produto4 = new Produto(4L, "Borracha Branca", 5.75);
+        
+        Produto produto1 = new Produto(1L, "Geladeira", 1500.00);
+        Produto produto2 = new Produto(2L, "Fogão de Indução", 500.00);
+        Produto produto3 = new Produto(3L, "Microondas", 550.00);
+        Produto produto4 = new Produto(4L, "Cafeteira", 120.50);
         
         produtoRepository.save(produto1);
         produtoRepository.save(produto2);
         produtoRepository.save(produto3);
         produtoRepository.save(produto4);
         
-        // Create and save estoque items
+        
         ItemDeEstoque estoque1 = new ItemDeEstoque(1L, produto1, 200, 50, 500);
         ItemDeEstoque estoque2 = new ItemDeEstoque(2L, produto2, 150, 30, 300);
         ItemDeEstoque estoque3 = new ItemDeEstoque(3L, produto3, 60, 10, 100);
@@ -56,7 +56,6 @@ public class DataInitializer implements CommandLineRunner {
         estoqueRepository.save(estoque3);
         estoqueRepository.save(estoque4);
         
-        // Create and save Pedidos (not directly saved but through Orcamento)
         List<ItemPedido> itensPedido1 = new ArrayList<>();
         itensPedido1.add(new ItemPedido(1L, produto1, 10));
         itensPedido1.add(new ItemPedido(2L, produto3, 5));
@@ -64,12 +63,15 @@ public class DataInitializer implements CommandLineRunner {
         List<ItemPedido> itensPedido2 = new ArrayList<>();
         itensPedido2.add(new ItemPedido(3L, produto2, 20));
         itensPedido2.add(new ItemPedido(4L, produto4, 15));
+
+         List<ItemPedido> itensPedido3 = new ArrayList<>();
+        itensPedido3.add(new ItemPedido(5L, produto3, 1));
+        itensPedido3.add(new ItemPedido(6L, produto1, 1));
         
-        // Create and save Orcamentos
         Orcamento orcamento1 = new Orcamento(1L, itensPedido1, false);
         orcamento1.setPais("Brasil");
         orcamento1.setRegiao("Sudeste");
-        orcamento1.setNomeCliente("Maria Souza");
+        orcamento1.setNomeCliente("Carlos");
         orcamento1.setDesconto(5.00);
         orcamento1.setImpostoFederal(3.50);
         orcamento1.setImpostoRegional(1.75);
@@ -77,14 +79,22 @@ public class DataInitializer implements CommandLineRunner {
         Orcamento orcamento2 = new Orcamento(2L, itensPedido2, true);
         orcamento2.setPais("Brasil");
         orcamento2.setRegiao("Sul");
-        orcamento2.setNomeCliente("João Silva");
+        orcamento2.setNomeCliente("Antônio");
         orcamento2.setDesconto(0.00);
         orcamento2.setImpostoFederal(2.00);
         orcamento2.setImpostoRegional(1.00);
         
+        Orcamento orcamento3 = new Orcamento(2L, itensPedido3, true);
+        orcamento2.setPais("Brasil");
+        orcamento2.setRegiao("Pernanbuco");
+        orcamento2.setNomeCliente("Bernardo");
+        orcamento2.setDesconto(10.00);
+        orcamento2.setImpostoFederal(2.00);
+        orcamento2.setImpostoRegional(12.00);
+
         orcamentoRepository.save(orcamento1);
         orcamentoRepository.save(orcamento2);
-        
-        System.out.println("Sample data has been loaded!");
+        orcamentoRepository.save(orcamento3);
+
     }
 }
