@@ -1,9 +1,9 @@
 package com.bcopstein.sistvendas.aplicacao.casosDeUso;
 
+import com.bcopstein.sistvendas.aplicacao.dtos.RegistroDeVendaDTO;
 import com.bcopstein.sistvendas.aplicacao.dtos.OrcamentoDTO;
 import com.bcopstein.sistvendas.dominio.modelos.OrcamentoModel;
 import com.bcopstein.sistvendas.dominio.servicos.ServicoDeVendas;
-import com.bcopstein.sistvendas.aplicacao.dtos.RegistroDeVendaDTO;
 import com.bcopstein.sistvendas.infra.VendaPublisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

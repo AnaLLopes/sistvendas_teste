@@ -1,6 +1,5 @@
-package com.bcopstein.sistvendas.interfaceAdaptadora.repositorios.interfaceJPA;
+package com.bcopstein.historyservice;
 
-import com.bcopstein.sistvendas.interfaceAdaptadora.repositorios.entidades.RegistroDeVenda;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

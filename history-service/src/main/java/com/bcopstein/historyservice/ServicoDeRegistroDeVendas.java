@@ -1,7 +1,7 @@
-package com.bcopstein.sistvendas.dominio.servicos;
+package com.bcopstein.historyservice;
 
-import com.bcopstein.sistvendas.interfaceAdaptadora.repositorios.entidades.RegistroDeVenda;
-import com.bcopstein.sistvendas.interfaceAdaptadora.repositorios.interfaceJPA.RegistroDeVendaJPA_ItfRep;
+import com.bcopstein.historyservice.RegistroDeVenda;
+import com.bcopstein.historyservice.RegistroDeVendaJPA_ItfRep;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

@@ -1,16 +1,14 @@
-package com.bcopstein.sistvendas.interfaceAdaptadora.repositorios.entidades;
+package com.bcopstein.historyservice;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-//@Table(name = "registro_venda")
 public class RegistroDeVenda {
 
     @Id
