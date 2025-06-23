@@ -14,10 +14,10 @@ public class ImpostoServiceClient {
     }
 
     public double calculaImpostoFederal(PedidoModel pedido) {
-        return restTemplate.postForObject("http://imposto-service:8082/impostos/federal", pedido, Double.class);
+        return restTemplate.postForObject("http://imposto-service:8200/impostos/federal", pedido, Double.class);
     }
 
     public double calculaImpostoRegional(PedidoModel pedido) {
-        return restTemplate.postForObject("http://imposto-service:8082/impostos/regional", pedido, Double.class);
+        return restTemplate.postForObject("http://imposto-service:8200/impostos/regional", pedido, Double.class);
     }
 }

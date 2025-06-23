@@ -14,6 +14,10 @@ public class PedidoDTO {
     private String regiao;
     private String nomeCliente;
 
+    public PedidoDTO() {
+        // Construtor padrão obrigatório para Spring
+    }
+
     public PedidoDTO(long id, List<ItemPedidoDTO> itens, String pais, String regiao, String nomeCliente) {
         this.id = id;
         this.itens = itens;
@@ -26,24 +30,43 @@ public class PedidoDTO {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public List<ItemPedidoDTO> getItens() {
         return itens;
+    }
+
+    public void setItens(List<ItemPedidoDTO> itens) {
+        this.itens = itens;
     }
 
     public String getPais() {
         return pais;
     }
 
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
 
     public String getRegiao() {
         return regiao;
+    }
+
+    public void setRegiao(String regiao) {
+        this.regiao = regiao;
     }
 
     public String getNomeCliente() {
         return nomeCliente;
     }
 
-    public PedidoDTO fromModel(PedidoModel pedido) {
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public static PedidoDTO fromModel(PedidoModel pedido) {
         List<ItemPedidoDTO> itens = new ArrayList<>(pedido.getItens().size());
         for (ItemPedidoModel ip : pedido.getItens()) {
             itens.add(ItemPedidoDTO.fromModel(ip));
