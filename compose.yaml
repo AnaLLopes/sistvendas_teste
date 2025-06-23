@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: imposto-service/Dockerfile
     ports:
-      - "8100:8100"
+      - "8200:8200"
     networks:
       - currency-network
     depends_on:
